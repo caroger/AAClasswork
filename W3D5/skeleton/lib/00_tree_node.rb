@@ -1,3 +1,4 @@
+# W3D5 Class Project 1
 class PolyTreeNode
   attr_reader :value, :parent, :children
 
