@@ -1,7 +1,7 @@
 class Piece
 
   attr_accessor :color, :board, :pos 
-  
+
   def initialize(color, board, pos)
     @color = color
     @board = board
@@ -28,12 +28,7 @@ class Piece
   def pos=(val)
 
   end
-
-  def out_of_bound?(pos)
-    x,y = pos 
-    x < 0 || x > 7 || y < 0 || y > 7
-  end
-
+  
   private
   def move_into_check?(end_pos)
   end
