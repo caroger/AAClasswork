@@ -5,7 +5,11 @@ class Rook < Piece
   include Slideable
 
   def symbol 
-    :R
+    "♖"
+  end
+
+  def move_dirs
+    horizontal_dirs + vertical_dirs 
   end
 
 

@@ -10,7 +10,6 @@ class NullPiece < Piece
   def initialize
     @symbol = ' '
     @color = :none
-    super
   end
 
   def empty? 
