@@ -1,17 +1,29 @@
+require_relative "./piece/rook.rb"
+require_relative './piece/null.rb'
+# require_relative './piece/piece.rb'
 
 class Board
-  def initialize()
-    @board = Board.make_new_board
+
+  attr_accessor :grid, :p_null
+
+  def initialize
+    @grid = []
+    @p_null = NullPiece.instance
+    make_new_board
   end
 
   def [](pos)
     row, col = pos 
-    @board[row][col]
+    @grid[row][col]
   end
 
-  def []=(pos,val)
+  def []=(pos,val) 
     row, col = pos 
-    @board[row][col] = val 
+    @grid[row][col] = val 
+  end
+
+  def add_piece(pos, piece)
+    self[pos] = piece 
   end
 
 
@@ -22,17 +34,8 @@ class Board
     self[start_pos] = nil 
   end
 
-  def self.make_new_board # return 2d array
-    board = Array.new(8) {Array.new(8, nil)}
-    board[0][0] = "Rook"
-    board[0][7] = "Rook"
-    board[7][0] = "Rook"
-    board[7][7] = "Rook"
-    board[0][1] = "Knight"
-    board[0][6] = "Knight"
-    board[7][1] = "Knight"
-    board[7][6] = "Knight"
-    board 
+  def make_new_board # return 2d array
+    @grid = Array.new(8) {Array.new(8, p_null)}
   end
   
 end
