@@ -7,6 +7,10 @@ class Piece
     @pos = pos
   end
 
+  def moves
+    
+  end
+
   def to_s
 
   end
