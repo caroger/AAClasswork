@@ -28,16 +28,26 @@ class Board
 
 
   def move_piece(start_pos, end_pos)
+    
     end_row, end_col = end_pos 
-    raise "Invalid move" if !self[end_pos].empty?
-    self[end_pos] = self[start_pos]
-    self[start_pos] = p_null 
+    if self[start_pos].moves.include?(end_pos)
+      self[end_pos] = self[start_pos] 
+      self[start_pos] = p_null
+    else   
+      raise "Invalid move" if !self[end_pos].empty?
+    end
+
   end
 
   def make_new_board # return 2d array
     @grid = Array.new(8) {Array.new(8, p_null)}
   end
   
+  def valid_pos?(pos)
+    x,y = pos 
+    x.between?(0,7) && y.between?(0,7)
+  end
+
   def display
     @grid.map {|row| row.map {|p| p.to_s }}
   end
@@ -47,4 +57,6 @@ end
 b = Board.new
 r = Rook.new("white", b, [0,0])
 p b.display 
+p r.moves 
+r2 = Rook.new("black", b, [0,5])
 p r.moves 

@@ -40,10 +40,14 @@ module Slideable
       cur_y = cur_y + dy #[0]
       next_pos = [cur_x, cur_y] # [3,1] 
       # debugger 
-      break if out_of_bound?(next_pos) 
-      break if !board[next_pos].empty? 
+      break if !board.valid_pos?(next_pos) 
+      if board[next_pos].empty?
+        unblocked_moves << next_pos #[3,0]
+      else
+        unblocked_moves << next_pos if board[next_pos].color != color 
+        break
+      end
 
-      unblocked_moves << next_pos #[3,0]
     end
     unblocked_moves  
   end
