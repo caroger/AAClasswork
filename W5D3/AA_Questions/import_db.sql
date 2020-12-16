@@ -1,14 +1,14 @@
 PRAGMA foreign_keys = ON;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS questions;
-DROP TABLE IF EXISTS questions_follow;
-DROP TABLE IF EXISTS questions_replies;
-DROP TABLE IF EXISTS questions_question_likes;
+-- DROP TABLE IF EXISTS questions;
+-- DROP TABLE IF EXISTS questions_follow;
+-- DROP TABLE IF EXISTS questions_replies;
+-- DROP TABLE IF EXISTS questions_question_likes;
 
 CREATE TABLE users(
     id INTEGER PRIMARY KEY, 
-    f_name VARCHAR(255) NOT NULL,
-    l_name VARCHAR(255) NOT NULL,
+    fname VARCHAR(255) NOT NULL,
+    lname VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE questions(
@@ -52,25 +52,25 @@ CREATE TABLE question_likes(
 
 
 INSERT INTO 
-    users(f_name,l_name) /*specifies the order we will be supplying values in below*/
+    users (fname,lname) /*specifies the order we will be supplying values in below*/
 VALUES 
     ('Fred','Tabby'),
     ('Sediqa','Fahimi'),
     ('Roger','Hu');
 
 INSERT INTO 
-    questions(title,body) /*specifies the order we will be supplying values in below*/
+    questions(title, body, user_id) /*specifies the order we will be supplying values in below*/
 VALUES 
-    ('SQL','How to create a table?'),
-    ('Ruby','How to bubble sort?'),
-    ('HTML','How to render HTML?');
+    ('SQL','How to create a table?', (SELECT id FROM users WHERE fname = 'Fred' AND lname ='Tabby')),
+    ('Ruby','How to bubble sort?',(SELECT id FROM users WHERE fname = 'Sediqa' AND lname ='Fahimi')),
+    ('HTML','How to render HTML?', (SELECT id FROM users WHERE fname = 'Roger' AND lname ='Hu'));
 
 INSERT INTO 
-    questions_follows(question_id,user_id) /*specifies the order we will be supplying values in below*/
+    questions_follows(user_id, question_id) /*specifies the order we will be supplying values in below*/
 VALUES 
-    (1,3),
-    (2,1),
-    (2,2);
+    ((SELECT id FROM users WHERE fname = 'Fred' AND lname ='Tabby'), (SELECT id FROM questions WHERE title = 'SQL' AND body = 'How to create a table?')),
+    ((SELECT id FROM users WHERE fname = 'Sediqa' AND lname ='Fahimi'), (SELECT id FROM questions WHERE title = 'Ruby' AND body = 'How to bubble sort?')),
+    ((SELECT id FROM users WHERE fname = 'Fred' AND lname ='Tabby'), (SELECT id FROM questions WHERE title = 'HTML' AND body = 'How to render HTML?'));
 
 INSERT INTO 
     replies(body,parent_id,user_id,question_id) /*specifies the order we will be supplying values in below*/
