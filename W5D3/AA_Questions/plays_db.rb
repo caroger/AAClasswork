@@ -10,21 +10,32 @@ class PlayDBConnection < SQLite3::Database
     end
 end
 class Users
-    attr_accessor :fname, :lname
+    # attr_accessor :fname, :lname
     def self.all
         data = PlayDBConnection.instance.execute("Select * from users")
-        data.map { |data| Users.new(data) }
-    end
-    def initialize(data)
-        @id = data['id']
-        @fname = data['fname']
-        @lname = data['lname']
+        data
     end
 
-    def find_by_id(id)
+    def self.find_by_id(idx)
+        id = PlayDBConnection.instance.execute(<<-SQL, idx)
+            SELECT *
+            FROM users
+            WHERE id = ?
+        SQL
+        return nil unless id.length > 0
+
+        id
+
+        # Users.new(id.first)
         
-
     end
+
+    # def initialize(data)
+    #     @id = data['id']
+    #     @fname = data['fname']
+    #     @lname = data['lname']
+    # end
+
 
 end
 
