@@ -49,7 +49,6 @@ class Question
         SQL
         return nil unless id.length > 0
         Question.new(id.first)
-        
     end
 
     def initialize(data)
@@ -66,7 +65,9 @@ class Question
         SQL
         return nil unless id.length > 0
         Question.new(id.first)
-
+    end
+    def followers
+        QuestionFollows.followers_for_question_id(@id)
     end
 
 end
