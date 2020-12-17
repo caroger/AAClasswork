@@ -85,7 +85,19 @@ class QuestionFollows
         SQL
         return nil unless id.length > 0
         QuestionFollows.new(id.first)
-        
+    end
+
+    def self.followers_for_question_id(question_id)
+        followers = QuestionDBConnection.instance.execute(<<-SQL, question_id)
+            SELECT users.*
+            FROM users
+            JOIN questions_follows ON users.id = questions_follows.user_id
+            JOIN questions ON questions_follows.question_id = questions.id
+            WHERE questions.id = ? 
+        SQL
+        return nil unless followers.length > 0
+
+        followers.map { |follower| User.new(follower)}
     end
 
     def initialize(data)
