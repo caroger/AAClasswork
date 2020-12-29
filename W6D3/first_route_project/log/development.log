@@ -2,3 +2,63 @@
   ↳ bin/rails:9
   [1m[35m (46.4ms)[0m  [1m[35mCREATE DATABASE "first_route_project_test" ENCODING = 'unicode'[0m
   ↳ bin/rails:9
+  [1m[35m (351.1ms)[0m  [1m[35mCREATE DATABASE "first_route_project_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (102.9ms)[0m  [1m[35mCREATE DATABASE "first_route_project_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+Started GET "/" for ::1 at 2020-12-29 14:12:54 -0800
+Processing by Rails::WelcomeController#index as */*
+  Rendering /Users/hyeyoungshin/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/hyeyoungshin/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.4/lib/rails/templates/rails/welcome/index.html.erb (3.2ms)
+Completed 200 OK in 112ms (Views: 56.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2020-12-29 14:15:52 -0800
+
+AbstractController::ActionNotFound - The action 'index' could not be found for UsersController:
+
+Started GET "/users" for ::1 at 2020-12-29 14:17:00 -0800
+Processing by UsersController#index as */*
+No template found for UsersController#index, rendering head :no_content
+Completed 204 No Content in 203ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2020-12-29 14:18:15 -0800
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users?fav_food=pizza" for ::1 at 2020-12-29 14:19:21 -0800
+Processing by UsersController#index as */*
+  Parameters: {"fav_food"=>"pizza"}
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users?fav_food=pizza" for ::1 at 2020-12-29 14:20:56 -0800
+Processing by UsersController#index as */*
+  Parameters: {"fav_food"=>"pizza"}
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users?fav_food=pizza" for ::1 at 2020-12-29 14:21:16 -0800
+Processing by UsersController#create as */*
+  Parameters: {"fav_food"=>"pizza"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2020-12-29 14:22:36 -0800
+
+AbstractController::ActionNotFound - The action 'show' could not be found for UsersController:
+
+Started GET "/users/2" for ::1 at 2020-12-29 14:23:15 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
