@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #skip_before_action :verify_authenticity_token   #come back to this
+  # skip_before_action :verify_authenticity_token   #come back to this
 
   helper_method :current_user, :logged_in?
   #gives us access to these controller methods in our views 

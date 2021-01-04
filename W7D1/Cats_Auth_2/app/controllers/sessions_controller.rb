@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
     @user = User.new
     render :new
@@ -13,5 +14,10 @@ class SessionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destory
+    logout
+    redirect_to new_session_url
   end
 end
