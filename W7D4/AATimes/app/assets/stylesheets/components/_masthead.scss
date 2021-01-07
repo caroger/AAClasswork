@@ -24,6 +24,15 @@
 		color: $dark-gray;
 	}
 
+	a:first-of-type {
+		font-weight: bold;
+	}
+
+
+	a:hover {
+		text-decoration: underline;
+	}
+
 	ul {
 		display: flex;
 	}
@@ -42,8 +51,13 @@
 	margin-bottom: 10px;
 
 	li {
+		align-items: center;
 		margin-left: 10px;
 		border-right: 1px solid $light-gray;
+	}
+
+	li:last-child {
+		border: none
 	}
 
 	button {
