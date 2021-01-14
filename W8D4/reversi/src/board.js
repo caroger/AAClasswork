@@ -56,6 +56,11 @@ Board.prototype.isValidPos = function (pos) {
  * throwing an Error if the position is invalid.
  */
 Board.prototype.getPiece = function (pos) {
+  if (!this.isValidPos(pos)){
+    throw new Error('Not valid pos!');
+  }else {
+    return this.grid[pos[0]][pos[1]];
+  }
   
 };
 
@@ -64,12 +69,15 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
+  let myPiece = this.getPiece(pos);
+  return myPiece && myPiece.color === color;
 };
 
 /**
  * Checks if a given position has a piece on it.
  */
 Board.prototype.isOccupied = function (pos) {
+  return !!this.getPiece(pos);
 };
 
 /**
@@ -94,6 +102,9 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
  * color being flipped.
  */
 Board.prototype.validMove = function (pos, color) {
+  if (this.isOccupied(pos)){
+    return false;
+  }
 };
 
 /**
