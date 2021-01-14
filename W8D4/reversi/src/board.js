@@ -99,20 +99,20 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
   /*
   1. 
   */
-  pos[0] = pos[0] + dir[0]
-  pos[1] = pos[1] + dir[1]
-
-  if (!this.isOccupied(pos)) {
+  
+  let nextPos = [pos[0] + dir[0], pos[1] + dir[1]]
+  debugger
+  if (!this.isOccupied(nextPos)) {
     return [];
-  } else if (!this.isValidPos(pos)){
+  } else if (!this.isValidPos(nextPos)){
     return [];
-  } else if (this.isMine(pos, color)){
+  } else if (this.isMine(nextPos, color)){
     return piecesToFlip;
   } else {
-    piecesToFlip.push(pos)
+    piecesToFlip.push(nextPos)
   }
 
-  piecesToFlip = this._positionsToFlip(pos, color, dir, piecesToFlip)
+  piecesToFlip = this._positionsToFlip(nextPos, color, dir, piecesToFlip)
   return piecesToFlip
 
 };
