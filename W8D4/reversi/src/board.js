@@ -39,6 +39,8 @@ Board.DIRS = [
   [-1, 1],
 ];
 
+
+
 /**
  * Checks if a given position is on the Board.
  */
@@ -205,7 +207,11 @@ Board.prototype.isOver = function () {
 /**
  * Prints a string representation of the Board to the console.
  */
-Board.prototype.print = function () {};
+Board.prototype.print = function () {
+  this.grid.forEach(row => {
+    
+  })
+};
 
 // DON'T TOUCH THIS CODE
 if (typeof window === "undefined") {
