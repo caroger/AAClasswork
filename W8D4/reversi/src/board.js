@@ -1,5 +1,5 @@
 // DON'T TOUCH THIS CODE
-if (typeof window === 'undefined'){
+if (typeof window === "undefined") {
   var Piece = require("./piece");
 }
 // DON'T TOUCH THIS CODE
@@ -8,9 +8,9 @@ if (typeof window === 'undefined'){
  * Returns a 2D array (8 by 8) with two black pieces at [3, 4] and [4, 3]
  * and two white pieces at [3, 3] and [4, 4]
  */
-function _makeGrid () {
+function _makeGrid() {
   var arr = new Array(8);
-  for (let i=0; i<8; i++) {
+  for (let i = 0; i < 8; i++) {
     arr[i] = new Array(8);
   }
   arr[3][4] = new Piece("black");
@@ -19,20 +19,24 @@ function _makeGrid () {
   arr[4][4] = new Piece("white");
 
   return arr;
-
 }
 
 /**
  * Constructs a Board with a starting grid set up.
  */
-function Board () {
+function Board() {
   this.grid = _makeGrid();
 }
 
 Board.DIRS = [
-  [ 0,  1], [ 1,  1], [ 1,  0],
-  [ 1, -1], [ 0, -1], [-1, -1],
-  [-1,  0], [-1,  1]
+  [0, 1],
+  [1, 1],
+  [1, 0],
+  [1, -1],
+  [0, -1],
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
 ];
 
 /**
@@ -56,12 +60,11 @@ Board.prototype.isValidPos = function (pos) {
  * throwing an Error if the position is invalid.
  */
 Board.prototype.getPiece = function (pos) {
-  if (!this.isValidPos(pos)){
-    throw new Error('Not valid pos!');
-  }else {
+  if (!this.isValidPos(pos)) {
+    throw new Error("Not valid pos!");
+  } else {
     return this.grid[pos[0]][pos[1]];
   }
-  
 };
 
 /**
@@ -93,28 +96,30 @@ Board.prototype.isOccupied = function (pos) {
  *
  * Returns empty array if no pieces of the opposite color are found.
  */
-Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
-
-
+Board.prototype._positionsToFlip = function (pos, color, dir, piecesToFlip) {
   /*
   1. 
   */
-  
-  let nextPos = [pos[0] + dir[0], pos[1] + dir[1]]
-  debugger
-  if (!this.isOccupied(nextPos)) {
-    return [];
-  } else if (!this.isValidPos(nextPos)){
-    return [];
-  } else if (this.isMine(nextPos, color)){
-    return piecesToFlip;
-  } else {
-    piecesToFlip.push(nextPos)
+  if (!piecesToFlip) {
+    piecesToFlip = [];
+  }else{
+
   }
 
-  piecesToFlip = this._positionsToFlip(nextPos, color, dir, piecesToFlip)
-  return piecesToFlip
+  let nextPos = [pos[0] + dir[0], pos[1] + dir[1]];
+  // debugger;
+  if (!this.isValidPos(nextPos)) {
+    return [];
+  } else if (!this.isOccupied(nextPos)) {
+    return [];
+  } else if (this.isMine(nextPos, color)) {
+    return piecesToFlip;
+  } else {
+    piecesToFlip.push(nextPos);
+  }
 
+  piecesToFlip = this._positionsToFlip(nextPos, color, dir, piecesToFlip);
+  return piecesToFlip;
 };
 
 /**
@@ -122,8 +127,7 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
  * taking the position will result in some pieces of the opposite
  * color being flipped.
  */
-Board.prototype.validMove = function (pos, color) {
-};
+Board.prototype.validMove = function (pos, color) {};
 
 /**
  * Adds a new piece of the given color to the given position, flipping the
@@ -131,43 +135,32 @@ Board.prototype.validMove = function (pos, color) {
  *
  * Throws an error if the position represents an invalid move.
  */
-Board.prototype.placePiece = function (pos, color) {
-};
+Board.prototype.placePiece = function (pos, color) {};
 
 /**
  * Produces an array of all valid positions on
  * the Board for a given color.
  */
-Board.prototype.validMoves = function (color) {
-};
+Board.prototype.validMoves = function (color) {};
 
 /**
  * Checks if there are any valid moves for the given color.
  */
-Board.prototype.hasMove = function (color) {
-};
-
-
+Board.prototype.hasMove = function (color) {};
 
 /**
  * Checks if both the white player and
  * the black player are out of moves.
  */
-Board.prototype.isOver = function () {
-};
-
-
-
+Board.prototype.isOver = function () {};
 
 /**
  * Prints a string representation of the Board to the console.
  */
-Board.prototype.print = function () {
-};
-
+Board.prototype.print = function () {};
 
 // DON'T TOUCH THIS CODE
-if (typeof window === 'undefined'){
+if (typeof window === "undefined") {
   module.exports = Board;
 }
 // DON'T TOUCH THIS CODE
