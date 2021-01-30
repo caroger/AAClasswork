@@ -18,7 +18,7 @@ const initialState = {
     done: true,
   },
 };
-const todosReducer = (state = initialState, action) => {
+const todosReducer = (state = {}, action) => {
   Object.freeze(state);
   let nextState = {};
   switch (action.type) {
