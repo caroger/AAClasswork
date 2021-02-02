@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/app";
+import Root from "./components/root";
 import configureStore from "../frontend/store/store";
 import { receiveTodo, receiveTodos, removeTodo } from "./actions/todo_actions";
 import { receiveStep, receiveSteps, removeStep } from "./actions/step_actions";
-// const store = configureStore;
-// window.store = store;
+// TODO  for testing
 // window.receiveTodo = receiveTodo;
 // window.receiveTodos = receiveTodos;
 // window.removeTodo = removeTodo;
@@ -13,7 +12,10 @@ import { receiveStep, receiveSteps, removeStep } from "./actions/step_actions";
 // window.receiveSteps = receiveSteps;
 // window.removeStep = removeStep;
 
+const root = document.getElementById("content");
+const store = configureStore;
+window.store = store;
+
 document.addEventListener("DOMContentLoaded", () => {
-  const root = document.getElementById("content");
-  ReactDOM.render(<App />, root);
+  ReactDOM.render(<Root store={store} />, root);
 });
