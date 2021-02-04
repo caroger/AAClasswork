@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import configureStore from "../frontend/store/store";
-import { receiveAllPokemon } from "./actions/pokemon_actions";
+import {
+  receiveAllPokemon,
+  requestAllPokemon,
+} from "./actions/pokemon_actions";
 import { fetchAllPokemon } from "./util/api_util";
 
 // TODO: for testing only
 window.receiveAllPokemon = receiveAllPokemon;
+window.requestAllPokemon = requestAllPokemon;
 window.fetchAllPokemon = fetchAllPokemon;
 
 document.addEventListener("DOMContentLoaded", () => {
