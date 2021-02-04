@@ -6,11 +6,13 @@ import {
   requestAllPokemon,
 } from "./actions/pokemon_actions";
 import { fetchAllPokemon } from "./util/api_util";
+import { selectAllPokemon } from "./reducers/selectors";
 
 // TODO: for testing only
 window.receiveAllPokemon = receiveAllPokemon;
 window.requestAllPokemon = requestAllPokemon;
 window.fetchAllPokemon = fetchAllPokemon;
+window.selectAllPokemon = selectAllPokemon;
 
 document.addEventListener("DOMContentLoaded", () => {
   const rootEl = document.getElementById("root");
