@@ -1,10 +1,10 @@
 function merge(array1, array2) {
   let out = [];
-  while (array1.length > 0 && array2.length > 0) {
+  while (array1.length && array2.length) {
     if (array1[0] < array2[0]) out.push(array1.shift());
     else out.push(array2.shift());
   }
-  if (array1.length > 0) out.push(...array1);
+  if (array1.length) out.push(...array1);
   else out.push(...array2);
   return out;
 }
