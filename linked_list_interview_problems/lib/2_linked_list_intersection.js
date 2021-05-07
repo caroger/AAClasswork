@@ -6,42 +6,69 @@
 // Prompt:
 // -------
 //
-// Write a function linkedListIntersection that returns the node at which the 
-// intersection of two linked lists begins, or null if there is no such 
+// Write a function linkedListIntersection that returns the node at which the
+// intersection of two linked lists begins, or null if there is no such
 // intersection.
 //
-// ---------- 
+// ----------
 // Example 1:
 // ----------
-// 
-// Given the following two linked lists, list1 and list2, 
-// linkedListIntersection(list1,list2) should return D 
+//
+// Given the following two linked lists, list1 and list2,
+// linkedListIntersection(list1,list2) should return D
 // as the node of intersection.
-// 
+//
 //    A → B → C
 //             ↘
 //               D → E → F
 //             ↗
 //        X → Y
 //
-// ---------- 
+// ----------
 // Example 2:
 // ----------
 //
-// Given the following two linked lists, list1 and list2, 
-// linkedListIntersection(list1, list2) should return null 
+// Given the following two linked lists, list1 and list2,
+// linkedListIntersection(list1, list2) should return null
 // as there is no point of intersection.
-// 
+//
 //    A → B → C → D
 //
 //    X → Y → Z
-// 
+//
 // -----------
 // Let's code!
 // -----------
 function linkedListIntersection(list1, list2) {
   // TODO: Implement the hasCycle function!
 
+  let p1 = list1.head;
+  let p2 = list2.head;
+
+  while (p1 && p2) {
+    if (p1 === p2) return p1;
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+
+  if (!p2) p2 = list1.head;
+  if (!p1) p1 = list2.head;
+
+  while (p1 && p2) {
+    if (p1 === p2) return p1;
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+
+  if (!p2) p2 = list1.head;
+  if (!p1) p1 = list2.head;
+
+  while (p1 && p2) {
+    if (p1 === p2) return p1;
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+  return null;
 }
 
 // ----------------------------------------
@@ -90,14 +117,14 @@ class LinkedList {
 // --------------------------------------
 // Helper For Testing Only - Do Not Edit!
 // --------------------------------------
-var stringify = function(list) {
+var stringify = function (list) {
   var result = [];
-  while(list !== null) {
+  while (list !== null) {
     result.push(list.value);
     list = list.next;
   }
   return result.join("");
-}
+};
 
 exports.Node = Node;
 exports.LinkedList = LinkedList;
