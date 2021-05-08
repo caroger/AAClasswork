@@ -5,8 +5,11 @@ function binarySearch(array, target) {
   while (left <= right) {
     let mid = (left + right) >> 1;
     if (array[mid] === target) return true;
-    if (array[mid] < target) left = mid + 1;
-    else right = mid - 1;
+    if (array[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
   }
   return false;
 }
@@ -18,10 +21,9 @@ function binarySearchIndex(array, target) {
   while (left <= right) {
     let mid = (left + right) >> 1;
     if (array[mid] === target) return mid;
-    if (target < array[mid]) right = mid - 1;
-    else left = mid + 1;
+    if (array[mid] < target) left = mid + 1;
+    if (array[mid] > target) right = mid - 1;
   }
-
   return -1;
 }
 
@@ -29,4 +31,3 @@ module.exports = {
   binarySearch,
   binarySearchIndex,
 };
-
