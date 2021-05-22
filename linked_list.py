@@ -56,37 +56,36 @@ class LinkedList:
     # TODO: Implement the add_to_tail method here
     def add_to_tail(self, value):
         node = Node(value)
-        if self._length == 0:
+        if self._head is None:
             self._head = node
-            self._tail = node
-            self._length += 1
         else:
             self._tail._next = node
-            self._tail = node
-            self._length += 1
+        self._tail = node
+        self._length += 1
+        return self
 
     # TODO: Implement the add_to_head method here
     def add_to_head(self, value):
         node = Node(value)
-        if len(self) == 0:
+        if self._head is None:
             self._tail = node
         else:
             node._next = self._head
         self._head = node
         self._length += 1
+        return self
 
     # TODO: Implement the remove_head method here
 
     def remove_head(self):
-        if self._head:
-            if self._length == 1:
-                self._head = None
-                self._tail = None
-            else:
-                self._head = self._head._next
-            self._length -= 1
-        else:
+        if self._head is None:
             return
+        if self._length == 1:
+            self._head = None
+            self._tail = None
+        else:
+            self._head = self._head._next
+        self._length -= 1
 
     # TODO: Implement the remove_tail method here
     def remove_tail(self):
